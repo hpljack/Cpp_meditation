@@ -17,7 +17,7 @@ class RoadVehicle: public Vehicle{
 public:
 	virtual double weight()const{return 2;}
 	virtual void start(){cout<<"RoadVehicle start"<<endl;}
-	virtual Vehicle* copy()const{ return new RoadVehicle(*this);}
+	virtual Vehicle* copy()const{ return new RoadVehicle(*this);} //产生一个新的副本
 	~RoadVehicle(){}
 };
 
@@ -94,7 +94,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	AutoVehicle y;
 	Aircraft z;
 	Helicopter helicopter;
-	parking_lot[num_vehicles++] = x;
+	parking_lot[num_vehicles++] = x; //copy x to parking_lot[0] 产生副本
 	parking_lot[num_vehicles++] = y;
 	parking_lot[num_vehicles++] = z;
 
