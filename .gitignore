@@ -26,3 +26,9 @@
 *.exe
 *.out
 *.app
+
+#vs
+*.sdf
+*.v11.suo
+*.ipch
+
