@@ -1,5 +1,6 @@
 #ifndef IOLIB_H
 #define IOLIB_H
 
-void InitContainer_test();
-#endif
+void iostate_test();
+
+#endif // !IOLIB_H

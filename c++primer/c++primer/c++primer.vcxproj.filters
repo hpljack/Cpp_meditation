@@ -33,16 +33,37 @@
     <ClInclude Include="array_pointer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="expression.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="func.h">
+    <ClInclude Include="func2.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="iolib.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="contianer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Person.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="some_class.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Message.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HasPtr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="smart_ptr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="value_ptr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="foo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="scrptr.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -62,13 +83,22 @@
     <ClCompile Include="array_pointer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="expression.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="func.cpp">
+    <ClCompile Include="func2.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="iolib.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="container.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Person.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="some_class.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Message.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

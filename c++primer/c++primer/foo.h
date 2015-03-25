@@ -1,11 +1,23 @@
-#include <string>
-using namespace std;
+#ifndef FOO_H
+#define FOO_H
+
+#include <vector>
+using std::vector;
 
 class Foo{
 public:
-	Foo(){m_name = "foo";}
-	Foo(const string& name):m_name(name){}
-	~Foo(){}
+	int &operator[](const size_t);
+	const int &operator[](const size_t)const;
 private:
-	string m_name;
+	vector<int> data;
 };
+
+int& Foo::operator [](const size_t index){
+	return data[index];//no range checking on index
+}
+
+const int& Foo::operator [](size_t index)const{
+	return data[index];//no range checking on index
+}
+
+#endif // !FOO_H
