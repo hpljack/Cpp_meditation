@@ -22,6 +22,9 @@ int main(){
 		return 0;
 	}
 
+	char Say[] = "¹şà¶°¡ Select I/O\n";
+	::send(s,Say,sizeof(Say),0);
+
 	char buff[256];
 	int nRecv = ::recv(s,buff,256,0);
 	if (nRecv > 0){
@@ -30,6 +33,6 @@ int main(){
 	}
 	::closesocket(s);
 
-	system("pause");
+	//system("pause");
 	return 0;
 }
