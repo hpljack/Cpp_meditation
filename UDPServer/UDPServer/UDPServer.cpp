@@ -26,10 +26,23 @@ int _tmain(int argc, _TCHAR* argv[])
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons(75);
 	addr.sin_addr.S_un.S_addr = INADDR_ANY;
-	::bind(s,(sockaddr*)&addr,sizeof(addr));
+	if(::bind(s,(sockaddr*)&addr,sizeof(addr)) == SOCKET_ERROR){
+		cout<<"Failed bind()"<<endl;
+		return 0;
+	}
 
 	cout<<"UDP服务器已启动"<<endl;
-	//while(true){
+	char buf[1024];
+	while(TRUE){
+		int nRecv = ::recvfrom(s,buf,1024,0,(sockaddr*)&addr2,&n);
+		if (nRecv > 0){
+			buf[nRecv] = '\n';
+			printf("接收到数据(%s):%s",::inet_ntoa(addr2.sin_addr),buf);
+		}
+	}
+	::closesocket(s);
+	/*
+	while(true){
 	if(::recvfrom(s,buff,10,0,(sockaddr*)&addr2,&n) != -1){
 		cout<<inet_ntoa(addr2.sin_addr)<<"已经连接上"<<endl;
 		cout<<buff<<endl;
@@ -38,7 +51,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		::WSACleanup();
 
 	}
-	//}
+	}*/
 
 	cin.get();
 	return 0;
