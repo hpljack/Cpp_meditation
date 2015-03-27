@@ -31,4 +31,6 @@
 *.sdf
 *.v11.suo
 *.ipch
+*.vcxproj
+*.vcxproj.filters
 
