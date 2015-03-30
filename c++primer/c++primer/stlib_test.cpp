@@ -98,3 +98,10 @@ void bitsetTest(){
 	string str("1100");
 	bitset<32> bitvec4(str);
 }
+
+void structsizeTest(){
+	cout<<"structTest"<<endl;
+	testStruct arr[10];
+	cout<<"arr"<<sizeof(arr)<<endl;
+	cout<<"testStruct"<<sizeof(testStruct)<<endl;
+}

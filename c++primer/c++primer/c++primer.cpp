@@ -19,6 +19,7 @@ using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	structsizeTest();
 	//scrptr test
 	scrptrTest();
 
