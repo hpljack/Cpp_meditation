@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include "HasPtr.h"
 #include "scrptr.h"
+#include <assert.h>
 
 using namespace std; 
 
