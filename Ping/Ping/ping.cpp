@@ -22,6 +22,7 @@ typedef struct _iphdr
 	unsigned int   sourceIP;  //源IP  
 	unsigned int   destIP;    //目标IP  
 }IPHeader,*PIPHeader;
+
 typedef struct icmp_hdr 
 {
 	unsigned char icmp_type; //消息类型
