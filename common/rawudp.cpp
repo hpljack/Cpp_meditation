@@ -8,6 +8,7 @@ CInitSock initsock;
 
 void SendUDPPacketTest(){
 
+	printf("********SendUDPPacketTest*******\n");
 	//输入参数信息
 	char szDestIp[] = "10.16.115.88";
 	char szSourceIP[] = "127.0.0.1";

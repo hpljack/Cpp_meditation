@@ -64,10 +64,13 @@
   <ItemGroup>
     <ClInclude Include="..\..\common\ipheaderinfo.h" />
     <ClInclude Include="..\..\common\rawudp.h" />
+    <ClInclude Include="..\..\common\Sniffer.h" />
     <ClInclude Include="GroupTalk.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\common\ipheaderinfo.cpp" />
     <ClCompile Include="..\..\common\rawudp.cpp" />
+    <ClCompile Include="..\..\common\Sniffer.cpp" />
     <ClCompile Include="GroupTalk.cpp" />
     <ClCompile Include="umain.cpp" />
   </ItemGroup>
