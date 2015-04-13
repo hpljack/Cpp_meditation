@@ -62,7 +62,7 @@ void PrintAllProtocol(){
 #endif // DEBUG
 }
 
-int InstallProvider(WCHAR* wsDllIPPath){
+int InstallProvider(WCHAR* wszDlIPPath){
 
 	WCHAR wszLSPName[] =L"TinyLSP";//我们的LSP名称
 	int nError = NO_ERROR;
@@ -109,11 +109,50 @@ int InstallProvider(WCHAR* wsDllIPPath){
 	//安装协议链
 	//修改协议名称 类型
 	WCHAR wszChainName[WSAPROTOCOL_LEN + 1];
+	swprintf(wszChainName,L"%ws over%ws",wszLSPName,UDPChainInfo.szProtocol);
+	wcscpy(UDPChainInfo.szProtocol,wszChainName);
+	if (UDPChainInfo.ProtocolChain.ChainLen == 1)
+	{
+		UDPChainInfo.ProtocolChain.ChainEntries[1] = dwUdpOrigCatalogId;
+	}else{
+		for (int i = UDPChainInfo.ProtocolChain.ChainLen; i > 0; i--)
+		{
+			UDPChainInfo.ProtocolChain.ChainEntries[i] = UDPChainInfo.ProtocolChain.ChainEntries[i - 1];
+		}
+	}
+	UDPChainInfo.ProtocolChain.ChainLen++;
+	//将我们的分层协议置于协议链的顶层
+	UDPChainInfo.ProtocolChain.ChainEntries[0] = dwLayeredCatalogId;
+	//获取一个Guid 
+	GUID ProviderChainGuid;
+	if(::UuidCreate(&ProviderChainGuid) == RPC_S_OK){
+		if(::WSCInstallProvider(&ProviderChainGuid,wszDlIPPath,&UDPChainInfo,1,&nError) == SOCKET_ERROR)
+			return nError;
+	}else
+		return GetLastError();
 
-
-
-
-
+	//重新排序winsock目录 将我们的协议链提前
+	//重新枚举安装的协议
+	FreeProviderW(pProtoInfo);
+	pProtoInfo = GetProviderW(&nProtocols);
+	DWORD dwIds[20];
+	int nIndex = 0;
+	//添加我们的协议连
+	for (int i = 0; i != nProtocols; ++i)
+	{
+		if(pProtoInfo[i].ProtocolChain.ChainLen >1 && (pProtoInfo[i].ProtocolChain.ChainEntries[0] == dwLayeredCatalogId))
+			dwIds[nIndex++] = pProtoInfo[i].dwCatalogEntryId;
+	}
+	//添加其他协议
+	for (int i = 0; i != nProtocols; ++i)
+	{
+		if(pProtoInfo[i].ProtocolChain.ChainLen >1 || (pProtoInfo[i].ProtocolChain.ChainEntries[0] != dwLayeredCatalogId))
+			dwIds[nIndex++] = pProtoInfo[i].dwCatalogEntryId;
+	}
+	//重新排序winsock目录
+	nError = ::WSCWriteProviderOrder(dwIds,nIndex);
+	FreeProviderW(pProtoInfo);
+	return nError;
 }
 
 void RemoveProvider(){
